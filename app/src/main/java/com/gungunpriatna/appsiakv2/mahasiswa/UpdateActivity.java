@@ -114,7 +114,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_delete:
-                //showAlertDialog(ALERT_DIALOG_DELETE);
+                showAlertDialog(ALERT_DIALOG_DELETE);
                 break;
             case android.R.id.home:
                 showAlertDialog(ALERT_DIALOG_CLOSE);
@@ -154,6 +154,13 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                             finish();
                         } else {
                             //hapus data
+                            DatabaseReference dbMahasiswa =
+                                    mDatabase.child("mahasiswa").child(mahasiswaId);
+                            dbMahasiswa.removeValue();
+
+                            Toast.makeText(UpdateActivity.this, "Deleting Data...",
+                                    Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }
                 })

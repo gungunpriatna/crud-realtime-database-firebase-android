@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.gungunpriatna.appsiakv2.adapter.MahasiswaAdapter;
 import com.gungunpriatna.appsiakv2.mahasiswa.CreateActivity;
+import com.gungunpriatna.appsiakv2.mahasiswa.UpdateActivity;
 import com.gungunpriatna.appsiakv2.model.Mahasiswa;
 
 import java.util.ArrayList;
@@ -41,6 +43,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdd.setOnClickListener(this);
 
         mahasiswaList = new ArrayList<>();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
+                intent.putExtra(UpdateActivity.EXTRA_MAHASISWA, mahasiswaList.get(i));
+
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

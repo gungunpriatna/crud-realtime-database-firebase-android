@@ -45,7 +45,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void saveMahasiswa()
+    private void saveMahasiswa()
     {
         String nama = edtNama.getText().toString().trim();
         String nim = edtNim.getText().toString().trim();
